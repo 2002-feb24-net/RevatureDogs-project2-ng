@@ -1,0 +1,7 @@
+bin/
+obj/
+.vs/
+.vscode/
+PublishProfile/
+node_modules/
+SecretConfiguration.cs
