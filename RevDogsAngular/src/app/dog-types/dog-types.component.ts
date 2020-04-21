@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DogType } from './dog-types';
+import { DogType } from '../models/dog-types';
+import { DogTypesService } from '../dog-types.service';
+import { DOGTYPES } from '../mock-dog-types';
 
 @Component({
   selector: 'app-dog-types',
@@ -7,15 +9,22 @@ import { DogType } from './dog-types';
   styleUrls: ['./dog-types.component.css']
 })
 export class DogTypesComponent implements OnInit {
-  dogType: DogType = {
-    breed: "Husky",
-    lifeExpectancy: 144,
-    size: 3
-  };
+  dogTypes: DogType[];
+  selectedDogType: DogType;
+  newDogName: string;
 
-  constructor() { }
+  constructor(private dogTypeService: DogTypesService) { }
 
   ngOnInit(): void {
+    this.getDogTypes();
   }
 
+  getDogTypes(){
+     //return this.dogTypeService.getDogTypes().then(dogTypes => { this.dogTypes = dogTypes; });
+     this.dogTypes = DOGTYPES;
+  }
+
+  onSelect(dogType: DogType): void {
+    this.selectedDogType = dogType;
+  }
 }

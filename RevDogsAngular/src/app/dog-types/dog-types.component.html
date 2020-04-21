@@ -1,3 +1,17 @@
-<h2>{{dogType.breed}} Details</h2>
-<div><span>Life Expectancy: </span>{{dogType.lifeExpectancy}}</div>
-<div><span>Size: </span>{{dogType.size}}</div>
+<h2>Pick a Dog</h2>
+<ul class="dogTypes">
+  <li *ngFor="let dogType of dogTypes"
+    [class.selected]="dogType === selectedDogType"
+    (click)="onSelect(dogType)">
+    <span class="badge">{{dogType.id}}</span> {{dogType.breed}}
+  </li>
+</ul>
+
+<div *ngIf="selectedDogType">
+  <h2>Adopt a {{selectedDogType.breed}} puppy?</h2>
+  <div><span>Id: </span>{{selectedDogType.id}}</div>
+  <div><span>Breed: </span>{{selectedDogType.breed}}</div>
+  <div><span>Life Expectancy: </span>{{selectedDogType.lifeExpectancy}}</div>
+  <div><span>Size: </span>{{selectedDogType.size}}</div>
+  <div><span>Give it a name: <input [(ngModel)]="newDogName" placeholder="name"/></span></div>
+</div>
