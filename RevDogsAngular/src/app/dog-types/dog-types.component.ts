@@ -19,9 +19,9 @@ export class DogTypesComponent implements OnInit {
     this.getDogTypes();
   }
 
-  getDogTypes(){
-     //return this.dogTypeService.getDogTypes().then(dogTypes => { this.dogTypes = dogTypes; });
-     this.dogTypes = DOGTYPES;
+  getDogTypes(): void{
+     this.dogTypeService.getDogTypes().subscribe(dogTypes => this.dogTypes = dogTypes);
+     //this.dogTypes = DOGTYPES;
   }
 
   onSelect(dogType: DogType): void {
