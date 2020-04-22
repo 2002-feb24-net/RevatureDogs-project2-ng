@@ -20,7 +20,7 @@ export class DogTypesComponent implements OnInit {
   }
 
   getDogTypes(){
-     //return this.dogTypeService.getDogTypes().then(dogTypes => { this.dogTypes = dogTypes; });
+     // return this.dogTypeService.getDogTypes().then(dogTypes => { this.dogTypes = dogTypes; });
      this.dogTypes = DOGTYPES;
   }
 

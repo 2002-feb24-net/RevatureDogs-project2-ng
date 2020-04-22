@@ -1,0 +1,17 @@
+{
+  "hosting": [
+    {
+      "app": {
+        "project": "RevDogsAngular",
+        "target": "build",
+        "configuration": "production",
+        "path": "dist/RevDogsAngular"
+      },
+      "azureHosting": {
+        "subscription": "78b43f0d-e2db-4e7b-a091-747958a9a1c3",
+        "resourceGroupName": "RevDogsAngular-static-deploy93",
+        "account": "revdogsangularstatic"
+      }
+    }
+  ]
+}
