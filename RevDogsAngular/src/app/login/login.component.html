@@ -1,4 +1,16 @@
 <div align="right">
-    <p>login here</p>
-    <a routerLink="/create-user">New User</a>
+    <nav>
+        <div *ngIf="!user else loggedin">
+            <label>Username:
+              <input #Username />
+            </label>
+            <!-- (click) passes input value to add() and then clears the input -->
+            <button (click)="login(Username.value); Username.value=''">Login</button>
+            <a routerLink="/create-user">New User</a>
+        </div>
+        <ng-template #loggedin>
+            <label>Hello {{user.firstName}} {{user.lastName}} </label>
+            <button (click)="logout();">Logout</button>
+        </ng-template>
+    </nav>
 </div>
