@@ -1,18 +1,37 @@
-<div class="dogs" *ngIf="loggedUser else notloggedin">
-  <table *ngFor="let dog of dogs"
-    [class.selected]="dog === selectedDog"
-    (click)="onSelect(dog)">
-    <thead><th>{{dog.petName}}</th></thead>
-    <tbody align="center">
-      <tr><td>Breed: {{dog.dogTypeId}}</td></tr>
-      <tr><td>Hunger: {{getHunger(dog)}}</td></tr>
-      <tr><td>Mood: {{getMood(dog)}}</td></tr>
-      <tr><td>Energy: {{getEnergy(dog)}}</td></tr>
-      <tr><td>Age (in months): {{dog.age}}</td></tr>
-    </tbody>
-  </table>
-</div>
+<div class="grid-container" *ngIf="loggedUser else notloggedin">
 
+  <div class="grid-item">
+    <div class="dogs">
+      <table *ngFor="let dog of dogs"
+        [class.selected]="dog === selectedDog"
+        (click)="onSelect(dog)">
+        <thead><th>{{dog.petName}}</th></thead>
+        <tbody align="center">
+          <tr><td>Hunger: {{getHunger(dog)}}</td></tr>
+          <tr><td>Mood: {{getMood(dog)}}</td></tr>
+          <tr><td>Energy: {{getEnergy(dog)}}</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <button (click)="nextDay();">Next Day >></button>
+  </div>
+
+  <div class="grid-item">
+    <div *ngIf="selectedDog else nodogselected">
+      <h3><em><b>{{selectedDog.petName}}</b></em></h3>
+      <p>Breed: {{getBreed(selectedDog)}}</p>
+      <p>Age (in months): {{selectedDog.age}}</p>
+      <nav>
+        <button>Feed</button>
+        <button>Play</button>
+      </nav>
+    </div>
+    <ng-template #nodogselected>
+      <p>Please select a dog.</p>
+    </ng-template>
+  </div>
+
+</div>  
 <ng-template #notloggedin>
   <p>You must be logged in to access the kennel.</p>
 </ng-template>

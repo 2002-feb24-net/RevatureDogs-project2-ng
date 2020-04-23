@@ -5,12 +5,12 @@
               <input #Username />
             </label>
             <!-- (click) passes input value to add() and then clears the input -->
-            <button (click)="login(Username.value); Username.value=''">Login</button>
+            <a (click)="login(Username.value); Username.value=''">Login</a>
             <a routerLink="/create-user">New User</a>
         </div>
         <ng-template #loggedin>
-            <label>Hello {{user.firstName}} {{user.lastName}} </label>
-            <button (click)="logout();">Logout</button>
+            <label>Logged in as: {{user.firstName}} {{user.lastName}} </label>
+            <a (click)="logout();">Logout</a>
         </ng-template>
     </nav>
 </div>

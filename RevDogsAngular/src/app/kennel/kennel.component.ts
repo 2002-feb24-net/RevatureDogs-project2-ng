@@ -14,14 +14,20 @@ import { DogTypesService } from '../dog-types.service';
 export class KennelComponent implements OnInit {
   loggedUser: Users;
   dogs: Dogs[];
+  usersDogs: Dogs[];
   selectedDog: Dogs;
   breeds: DogType[];
 
-  constructor(private usersService: UsersService, private dogsService: DogsService) { }
+  constructor(private usersService: UsersService, private dogsService: DogsService, private dogTypesService: DogTypesService) { }
 
   ngOnInit(): void {
     this.usersService.sharedUser.subscribe(user => this.loggedUser = user);
     this.dogsService.getDogs().subscribe(dogs => this.dogs = dogs);
+    this.dogTypesService.getDogTypes().subscribe(dogTypes => this.breeds = dogTypes);
+  }
+
+  getUsersDogs(): void{
+
   }
   
   onSelect(dog: Dogs): void {
@@ -37,7 +43,9 @@ export class KennelComponent implements OnInit {
   }
 
   getMood(dog: Dogs): string{
-    if(dog.mood > 80)
+    if(!dog.isAlive)
+      return "💀";
+    else if(dog.mood > 80)
       return "😃";
     else if(dog.mood > 60)
       return "🙂";
@@ -55,4 +63,14 @@ export class KennelComponent implements OnInit {
     }
     return energy;
   }
+
+  getBreed(dog: Dogs): string{
+    for(var i = 0; i < this.breeds.length; i++){
+      if(this.breeds[i].id == dog.dogTypeId)
+        return this.breeds[i].breed;
+    }
+    return "Breed not found";
+  }
+
+  nextDay(){}
 }

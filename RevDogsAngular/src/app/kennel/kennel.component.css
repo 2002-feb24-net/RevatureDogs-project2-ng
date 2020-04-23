@@ -1,24 +1,59 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: #2196F3;
+  padding: 15px;
+  margin-top: 20px;
+  width: 965px;
+  border-radius: 10px;
+}
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  text-align: center;
+  width: 440px;
+  border-radius: 10px;
+}
+
 .dogs {
-    margin: 0 0 2em 0;
-    list-style-type: none;
-    padding: 5;
-    width: 20em;
-  }
-  .dogs table {
-    cursor: pointer;
-    position: relative;
-    left: 0;
-    background-color: #ffbd66;
-    width: 400px;
-    margin: .5em;
-    padding: .3em 0;
-    height: 5em;
-    border-radius: 4px;
-  }
-  .dogs table:hover {
-    background-color: #fca635;
-    left: .1em;
-  }
-  .dogs table.selected {
-    background-color: #fc9814;
-  }
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 5;
+  width: 20em;
+}
+.dogs table {
+  cursor: pointer;
+  position: relative;
+  left: 0;
+  background-color: #ffbd66;
+  width: 400px;
+  margin: .5em;
+  padding: .3em 0;
+  height: 5em;
+  border-radius: 10px;
+}
+.dogs table:hover {
+  background-color: #fca635;
+  left: .1em;
+}
+.dogs table.selected {
+  background-color: #fc9814;
+}
+
+button {
+  padding: 5px 10px;
+  text-decoration: none;
+  margin-top: 10px;
+  margin-right: 20px;
+  display: inline-block;
+  background-color: #eee;
+  border-radius: 4px;
+}
+button:hover {
+  color: #039be5;
+  background-color: #cfd8dc;
+}
+button.active {
+  color: #039be5;
+}
