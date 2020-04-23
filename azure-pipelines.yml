@@ -41,6 +41,51 @@ stages:
       artifact: app
       displayName: artifact publish app
 
+  - job: test
+
+    pool:
+      vmImage: ubuntu-latest
+
+    steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: $(nodeVersion)
+      displayName: node $(nodeVersion)
+
+    - script: npm ci
+      workingDirectory: $(appDir)
+      displayName: npm install
+
+    - task: SonarCloudPrepare@1
+      inputs:
+        SonarCloud: 'RevatureDogs-project2'
+        organization: '2002-feb24-net'
+        scannerMode: CLI
+        configMode: manual
+        cliProjectKey: 2002-feb24-net_RevatureDogs-project2-ng
+        cliProjectName: RevatureDogs-project2-ng
+        cliSources: $(appDir)/src
+        extraProperties: |
+          sonar.coverage.exclusions=**/*.spec.ts
+          sonar.typescript.lcov.reportPaths=$(appDir)/coverage/$(appDir)/lcov.info
+      displayName: sonarcloud analysis prepare
+
+    - script: npx ng test --browsers ChromeHeadless --no-watch --code-coverage
+      workingDirectory: $(appDir)
+      continueOnError: true
+      displayName: ng test
+
+    - script: npm run lint
+      workingDirectory: $(appDir)
+      continueOnError: true
+      displayName: ng lint
+
+    - task: SonarCloudAnalyze@1
+      displayName: sonarcloud analysis run
+
+    - task: SonarCloudPublish@1
+      displayName: sonarcloud results build publish
+
 
 
 - stage: deploy
