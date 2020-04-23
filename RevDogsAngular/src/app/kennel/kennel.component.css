@@ -1,37 +1,24 @@
 .dogs {
     margin: 0 0 2em 0;
     list-style-type: none;
-    padding: 0;
-    width: 15em;
+    padding: 5;
+    width: 20em;
   }
-  .dogs li {
+  .dogs table {
     cursor: pointer;
     position: relative;
     left: 0;
-    background-color: #dbfeff;
+    background-color: #ffbd66;
+    width: 400px;
     margin: .5em;
     padding: .3em 0;
-    height: 1.6em;
+    height: 5em;
     border-radius: 4px;
   }
-  .dogs li:hover {
-    background-color: #b5fdff;
+  .dogs table:hover {
+    background-color: #fca635;
     left: .1em;
   }
-  .dogs li.selected {
-    background-color: #87fcff;
-  }
-  .dogs .badge {
-    display: inline-block;
-    font-size: small;
-    color: white;
-    padding: 0.8em 0.7em 0 0.7em;
-    background-color:#056df5;
-    line-height: 1em;
-    position: relative;
-    left: -1px;
-    top: -4px;
-    height: 1.8em;
-    margin-right: .8em;
-    border-radius: 4px 0 0 4px;
+  .dogs table.selected {
+    background-color: #fc9814;
   }

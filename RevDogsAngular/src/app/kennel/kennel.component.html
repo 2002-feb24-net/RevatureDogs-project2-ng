@@ -1,12 +1,18 @@
-<p>This is where our users will be taking care of their dogs.</p>
-<div *ngIf="loggedUser">
-    <p>Logged in as {{loggedUser.userName}}</p>
+<div class="dogs" *ngIf="loggedUser else notloggedin">
+  <table *ngFor="let dog of dogs"
+    [class.selected]="dog === selectedDog"
+    (click)="onSelect(dog)">
+    <thead><th>{{dog.petName}}</th></thead>
+    <tbody align="center">
+      <tr><td>Breed: {{dog.dogTypeId}}</td></tr>
+      <tr><td>Hunger: {{getHunger(dog)}}</td></tr>
+      <tr><td>Mood: {{getMood(dog)}}</td></tr>
+      <tr><td>Energy: {{getEnergy(dog)}}</td></tr>
+      <tr><td>Age (in months): {{dog.age}}</td></tr>
+    </tbody>
+  </table>
 </div>
 
-<ul class="dogs">
-    <li *ngFor="let dog of dogs"
-      [class.selected]="dog === selectedDog"
-      (click)="onSelect(dog)">
-      <span class="badge">{{dog.id}}</span> {{dog.petName}}
-    </li>
-  </ul>
+<ng-template #notloggedin>
+  <p>You must be logged in to access the kennel.</p>
+</ng-template>
