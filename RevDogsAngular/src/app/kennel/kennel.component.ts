@@ -80,7 +80,7 @@ export class KennelComponent implements OnInit {
       else{
         dog.hunger -= 30;
         dog.mood -= 30;
-        dog.energy += 3;
+        dog.energy = 4;
       }
       this.updateDog(dog);
     }
