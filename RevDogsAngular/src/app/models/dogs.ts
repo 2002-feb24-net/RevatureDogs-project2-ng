@@ -2,7 +2,7 @@ import { DogType } from './dog-types';
 import { Users } from './users';
 
 export interface Dogs{
-    id: number;
+    id?: number;
     dogTypeId: number;
     userId: number;
     isAliva: boolean;

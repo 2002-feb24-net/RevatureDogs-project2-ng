@@ -1,1 +1,13 @@
-<p>The leaderboard goes here.</p>
+<table class="users">
+    <thead>
+        <th>Name</th>
+        <th>Score</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{user.firstName}} {{user.lastName}}</td>
+            <td>{{user.score}}</td>
+        </tr>
+    </tbody>
+
+</table>

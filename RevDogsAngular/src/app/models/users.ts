@@ -1,11 +1,10 @@
 import { Dogs } from './dogs';
 
 export interface Users{
-    id: number;
+    id?: number;
     userName: string;
     firstName: string;
     lastName: string;
-    score: number;
-
+    score?: number;
     dogs: Dogs[];
 }

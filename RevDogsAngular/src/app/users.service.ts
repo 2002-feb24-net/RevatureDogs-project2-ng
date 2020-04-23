@@ -22,6 +22,22 @@ export class UsersService {
 
   }
 
+  getUsers(): Observable<Users[]>{
+    return this.http.get<Users[]>(`${this.usersUrl}`)
+      .pipe(
+        tap(_ => console.log('UsersService: Fetched Users')),
+        catchError(this.handleError<Users[]>('getUsers', []))
+      );
+  }
+
+  createUser(user: Users): Observable<Users>{
+    return this.http.post<Users>(`${this.usersUrl}`, user)
+      .pipe(
+        tap(_ => console.log('UsersService: Created User')),
+        catchError(this.handleError<Users>('createUser'))
+      );;
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.

@@ -1,1 +1,17 @@
-<p>Create users here.</p>
+<h3>Create a New User</h3>
+<div>
+    <label>Username:
+      <input #Username />
+    </label><br>
+    <label>First Name:
+        <input #FirstName />
+      </label><br>
+      <label>Last Name: 
+        <input #LastName />
+      </label><br>
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button (click)="addUser(Username.value, FirstName.value, LastName.value); Username.value=''; FirstName.value=''; LastName.value='';">
+      Create User
+    </button>
+  </div>
+{{message}}
