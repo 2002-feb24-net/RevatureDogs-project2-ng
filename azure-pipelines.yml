@@ -70,5 +70,6 @@ stages:
               ConnectionType: 'AzureRM'
               azureSubscription: 'Azure-RevatureDogs-project2'
               appType: 'webApp'
+              WebAppName: AngularRevatureDogs
               packageForLinux: $(Pipeline.Workspace)/app
             displayName: azure app service deploy
