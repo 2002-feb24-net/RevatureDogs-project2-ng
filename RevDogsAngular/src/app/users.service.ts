@@ -9,7 +9,7 @@ import { tap, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UsersService {
-  private usersUrl = "https://localhost:5001/api/Users";
+  private usersUrl = "https://revaturedogs-project2.azurewebsites.net/api/Users";
   private loggedUser = new BehaviorSubject<Users>(null);
   sharedUser = this.loggedUser.asObservable();
 

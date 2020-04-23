@@ -8,7 +8,7 @@ import { catchError, map, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class DogTypesService {
-  private dogTypesUrl = "https://localhost:5001/api/DogTypes";
+  private dogTypesUrl = "https://revaturedogs-project2.azurewebsites.net/api/DogTypes";
 
   constructor(private http: HttpClient) { }
 
