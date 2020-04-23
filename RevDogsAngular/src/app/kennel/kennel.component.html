@@ -1,1 +1,12 @@
 <p>This is where our users will be taking care of their dogs.</p>
+<div *ngIf="loggedUser">
+    <p>Logged in as {{loggedUser.userName}}</p>
+</div>
+
+<ul class="dogs">
+    <li *ngFor="let dog of dogs"
+      [class.selected]="dog === selectedDog"
+      (click)="onSelect(dog)">
+      <span class="badge">{{dog.id}}</span> {{dog.petName}}
+    </li>
+  </ul>

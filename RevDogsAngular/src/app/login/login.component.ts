@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Users } from '../models/users';
 import { UsersService } from '../users.service';
+import { EventEmitter } from 'protractor';
 
 @Component({
   selector: 'app-login',
@@ -10,17 +11,18 @@ import { UsersService } from '../users.service';
 export class LoginComponent implements OnInit {
   user: Users;
 
-  constructor(private usersServce: UsersService) { }
+  constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
+    this.usersService.sharedUser.subscribe(user => this.user = user);
   }
 
   login(username: string): void {
-    this.usersServce.getUserLogin(username).subscribe(users => this.user = users);
+    this.usersService.getUserLogin(username).subscribe(users => this.usersService.userLoggedIn(users));
   }
 
   logout(): void{
-    this.user = null;
+    this.usersService.userLoggedOut();
   }
 
 }

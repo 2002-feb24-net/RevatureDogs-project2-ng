@@ -5,11 +5,14 @@ export interface Dogs{
     id?: number;
     dogTypeId: number;
     userId: number;
-    isAliva: boolean;
-    adoptionDate: Date;
-    age: number;
-    energy: number;
+    petName: string;
+    hunger: number;
+    mood: number;
+    isAlive?: boolean;
+    adoptionDate?: Date;
+    age?: number;
+    energy?: number;
 
-    dogType: DogType;
-    user: Users;
+    dogType?: DogType;
+    user?: Users;
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { Users } from './models/users';
 import { tap, catchError } from 'rxjs/operators';
 
@@ -10,6 +10,8 @@ import { tap, catchError } from 'rxjs/operators';
 })
 export class UsersService {
   private usersUrl = "https://localhost:5001/api/Users";
+  private loggedUser = new BehaviorSubject<Users>(null);
+  sharedUser = this.loggedUser.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -19,7 +21,14 @@ export class UsersService {
       tap(_ => console.log('UsersService: Logged in')),
       catchError(this.handleError<Users>('getUserLogin'))
     );
+  }
 
+  userLoggedIn(user: Users){
+    this.loggedUser.next(user);
+  }
+
+  userLoggedOut(){
+    this.loggedUser.next(null);
   }
 
   getUsers(): Observable<Users[]>{
