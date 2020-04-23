@@ -21,9 +21,10 @@
       <h3><em><b>{{selectedDog.petName}}</b></em></h3>
       <p>Breed: {{getBreed(selectedDog)}}</p>
       <p>Age (in months): {{selectedDog.age}}</p>
+      <p>Adoption Date: {{selectedDog.adoptionDate}}</p>
       <nav>
-        <button>Feed</button>
-        <button>Play</button>
+        <button (click)="feedDog(selectedDog)">Feed</button>
+        <button (click)="playDog(selectedDog)">Play</button>
       </nav>
     </div>
     <ng-template #nodogselected>

@@ -14,7 +14,6 @@ import { DogTypesService } from '../dog-types.service';
 export class KennelComponent implements OnInit {
   loggedUser: Users;
   dogs: Dogs[];
-  usersDogs: Dogs[];
   selectedDog: Dogs;
   breeds: DogType[];
 
@@ -22,12 +21,9 @@ export class KennelComponent implements OnInit {
 
   ngOnInit(): void {
     this.usersService.sharedUser.subscribe(user => this.loggedUser = user);
-    this.dogsService.getDogs().subscribe(dogs => this.dogs = dogs);
+    if(this.loggedUser)
+      this.dogsService.getDogs(this.loggedUser.id).subscribe(dogs => this.dogs = dogs);
     this.dogTypesService.getDogTypes().subscribe(dogTypes => this.breeds = dogTypes);
-  }
-
-  getUsersDogs(): void{
-
   }
   
   onSelect(dog: Dogs): void {
@@ -72,5 +68,39 @@ export class KennelComponent implements OnInit {
     return "Breed not found";
   }
 
-  nextDay(){}
+  nextDay(){
+    for(var i = 0; i < this.dogs.length; i++){
+      var dog = this.dogs[i];
+      if(dog.hunger <= 30 || dog.mood <= 30){
+        dog.hunger = 0;
+        dog.mood = 0;
+        dog.energy = 0;
+        dog.isAlive = false;
+      }
+      else{
+        dog.hunger -= 30;
+        dog.mood -= 30;
+        dog.energy += 3;
+      }
+      this.updateDog(dog);
+    }
+  }
+
+  feedDog(dog: Dogs){
+    if(dog.hunger < 100){
+      dog.hunger += 10;
+      this.updateDog(dog);
+    }
+  }
+
+  playDog(dog: Dogs){
+    if(dog.mood < 100){
+      dog.mood += 10;
+      this.updateDog(dog);
+    }
+  }
+
+  updateDog(dog: Dogs): void{
+    this.dogsService.updateDog(dog).subscribe();
+  }
 }

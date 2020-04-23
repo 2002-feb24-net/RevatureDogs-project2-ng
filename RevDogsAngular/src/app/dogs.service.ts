@@ -12,10 +12,10 @@ export class DogsService {
 
   constructor(private http: HttpClient) { }
 
-  getDogs(): Observable<Dogs[]> {
-    return this.http.get<Dogs[]>(`${this.dogsUrl}`)
+  getDogs(userId: number): Observable<Dogs[]> {
+    return this.http.get<Dogs[]>(`${this.dogsUrl}/FromUser/${userId}`)
       .pipe(
-        tap(_ => console.log('DogsService: Fetched dogs')),
+        tap(_ => console.log(`DogsService: Fetched dogs from user ${userId}`)),
         catchError(this.handleError<Dogs[]>('getDogs', []))
       );
   }
@@ -23,8 +23,16 @@ export class DogsService {
   createDog(dog: Dogs): Observable<Dogs>{
     return this.http.post<Dogs>(`${this.dogsUrl}`, dog)
       .pipe(
-        tap(_ => console.log('DogsService: Created Dog')),
+        tap(_ => console.log(`DogsService: Created Dog with id ${dog.id}`)),
         catchError(this.handleError<Dogs>('createDog'))
+      );;
+  }
+
+  updateDog(dog: Dogs): Observable<Dogs>{
+    return this.http.put<Dogs>(`${this.dogsUrl}/${dog.id}`, dog)
+      .pipe(
+        tap(_ => console.log(`DogsService: Updated Dog with id ${dog.id}`)),
+        catchError(this.handleError<Dogs>('updateDog'))
       );;
   }
 

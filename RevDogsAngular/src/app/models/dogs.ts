@@ -6,8 +6,8 @@ export interface Dogs{
     dogTypeId: number;
     userId: number;
     petName: string;
-    hunger: number;
-    mood: number;
+    hunger?: number;
+    mood?: number;
     isAlive?: boolean;
     adoptionDate?: Date;
     age?: number;

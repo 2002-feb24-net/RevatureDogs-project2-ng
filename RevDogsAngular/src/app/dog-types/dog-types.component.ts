@@ -41,9 +41,7 @@ export class DogTypesComponent implements OnInit {
         dogTypeId: this.selectedDogType.id,
         userId: this.loggedUser.id,
         petName: this.newDogName,
-        hunger: 70,
-        mood: 70,
-        energy: 3
+        hunger: 80
       }
       this.dogsService.createDog(newDog).subscribe();
       this.message = `Thanks ${this.loggedUser.firstName} ${this.loggedUser.lastName} for adopting ${this.newDogName}`;
