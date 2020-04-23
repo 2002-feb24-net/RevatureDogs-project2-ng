@@ -5,6 +5,7 @@ import { Dogs } from '../models/dogs';
 import { DogsService } from '../dogs.service';
 import { DogType } from '../models/dog-types';
 import { DogTypesService } from '../dog-types.service';
+import { digest } from '@angular/compiler/src/i18n/digest';
 
 @Component({
   selector: 'app-kennel',
@@ -33,7 +34,7 @@ export class KennelComponent implements OnInit {
   getHunger(dog: Dogs): string{
     var hunger = "";
     for(var i = 0; i < 10; i++){
-      hunger += (dog.hunger >= (i*10)) ? "🍖": "🦴";
+      hunger += (dog.hunger > (i*10)) ? "🍖": "🦴";
     }
     return hunger;
   }
@@ -87,14 +88,14 @@ export class KennelComponent implements OnInit {
   }
 
   feedDog(dog: Dogs){
-    if(dog.hunger < 100){
+    if(dog.hunger < 100 && dog.isAlive){
       dog.hunger += 10;
       this.updateDog(dog);
     }
   }
 
   playDog(dog: Dogs){
-    if(dog.mood < 100){
+    if(dog.mood < 100 && dog.isAlive){
       dog.mood += 10;
       this.updateDog(dog);
     }
