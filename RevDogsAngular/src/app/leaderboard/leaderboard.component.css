@@ -1,13 +1,24 @@
-table, td, th {  
+table, td, th {
     border: 1px solid #ddd;
-    text-align: left;
+    text-align: center;
   }
-  
+
   table {
     border-collapse: collapse;
     width: 50%;
   }
-  
+
   th, td {
     padding: 15px;
   }
+
+  th {
+    background-color: rgb(224, 37, 37);
+    color: white;
+  }
+
+  td{
+    background-color: rgb(255, 158, 158);
+    color: rgb(0, 0, 0);
+  }
+
