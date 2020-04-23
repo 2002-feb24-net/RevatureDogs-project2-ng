@@ -1,0 +1,74 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+trigger:
+- master
+
+pr:
+- master
+
+stages:
+
+- stage: build
+
+  variables:
+    nodeVersion: 13.x
+    appDir: RevDogsAngular
+
+  jobs:
+
+  - job: build
+
+    pool:
+      vmImage: ubuntu-latest
+
+    steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: $(nodeVersion)
+      displayName: node $(nodeVersion)
+
+    - script: npm ci
+      workingDirectory: $(appDir)
+      displayName: npm install
+
+    - script: npx ng build --outputPath $(Build.ArtifactStagingDirectory)/app --prod
+      workingDirectory: $(appDir)
+      displayName: ng build
+
+    - publish: $(Build.ArtifactStagingDirectory)/app
+      artifact: app
+      displayName: artifact publish app
+
+
+
+- stage: deploy
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  dependsOn: build
+
+  jobs:
+
+  - deployment: deploy_dev
+
+    pool:
+      vmImage: ubuntu-latest
+
+    environment: dev
+
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+
+          - download: current
+            artifact: app
+            displayName: artifact download app
+
+          - task: AzureRmWebAppDeployment@4
+            inputs:
+              ConnectionType: 'AzureRM'
+              azureSubscription: 'Azure-RevatureDogs-project2'
+              appType: 'webApp'
+              packageForLinux: $(Pipeline.Workspace)/app
+            displayName: azure app service deploy
