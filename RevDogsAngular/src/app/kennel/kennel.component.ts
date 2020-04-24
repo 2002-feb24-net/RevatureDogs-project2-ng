@@ -170,7 +170,7 @@ export class KennelComponent implements OnInit {
 
   practiceTrick(tp: TrickProgress){
     var trick = this.tricks.find(trick => trick.id == tp.trickId);
-    if(tp.progress < trick.diffculty){
+    if(tp.progress < trick.diffculty && this.selectedDog.energy > 0){
       tp.progress++;
       if(tp.progress == trick.diffculty){
         this.loggedUser.score += trick.points;
