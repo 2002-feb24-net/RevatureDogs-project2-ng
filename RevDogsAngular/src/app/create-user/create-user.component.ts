@@ -25,6 +25,7 @@ export class CreateUserComponent implements OnInit {
       dogs: []
     };
     this.usersService.createUser(newUser).subscribe();
+    this.message = `Created user ${newUser.userName}`;
   }
 
 }
