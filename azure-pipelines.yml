@@ -70,10 +70,10 @@ stages:
           sonar.typescript.lcov.reportPaths=$(appDir)/coverage/$(appDir)/lcov.info
       displayName: sonarcloud analysis prepare
 
-    - script: npx ng test --browsers ChromeHeadless --no-watch --code-coverage
-      workingDirectory: $(appDir)
-      continueOnError: true
-      displayName: ng test
+    # - script: npx ng test --browsers ChromeHeadless --no-watch --code-coverage
+    #   workingDirectory: $(appDir)
+    #   continueOnError: true
+    #   displayName: ng test
 
     # - script: npm run lint
     #   workingDirectory: $(appDir)
