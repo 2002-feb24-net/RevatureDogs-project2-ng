@@ -75,10 +75,10 @@ stages:
       continueOnError: true
       displayName: ng test
 
-    - script: npm run lint
-      workingDirectory: $(appDir)
-      continueOnError: true
-      displayName: ng lint
+    # - script: npm run lint
+    #   workingDirectory: $(appDir)
+    #   continueOnError: true
+    #   displayName: ng lint
 
     - task: SonarCloudAnalyze@1
       displayName: sonarcloud analysis run
