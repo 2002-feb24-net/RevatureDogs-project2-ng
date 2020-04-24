@@ -2,7 +2,7 @@
 
   <div class="grid-item">
     <div class="dogs">
-      <table *ngFor="let dog of dogs"
+      <table *ngFor="let dog of loggedUser.dogs"
         [class.selected]="dog === selectedDog"
         (click)="onSelect(dog)">
         <thead><th>{{dog.petName}}</th></thead>
@@ -22,10 +22,11 @@
       <p>Breed: {{getBreed(selectedDog)}}</p>
       <p>Age (in months): {{selectedDog.age}}</p>
       <p>Adoption Date: {{selectedDog.adoptionDate}}</p>
-      <nav>
+      <nav *ngIf="selectedDog.isAlive else isdead">
         <button (click)="feedDog(selectedDog)">Feed</button>
         <button (click)="playDog(selectedDog)">Play</button>
       </nav>
+      <ng-template #isdead><p>Your dog is dead...</p></ng-template>
     </div>
     <ng-template #nodogselected>
       <p>Please select a dog.</p>
