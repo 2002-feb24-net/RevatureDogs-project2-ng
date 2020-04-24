@@ -4,7 +4,6 @@
   background-color: #2196F3;
   padding: 15px;
   margin-top: 20px;
-  width: 965px;
   border-radius: 10px;
 }
 .grid-item {
@@ -56,4 +55,28 @@ button:hover {
 }
 button.active {
   color: #039be5;
+}
+
+.tricks {
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 5;
+  width: 20em;
+}
+.tricks table {
+  cursor: pointer;
+  position: relative;
+  left: 0;
+  background-color: #fd9eff;
+  width: 300px;
+  margin: .5em;
+  padding: .3em 0;
+  border-radius: 10px;
+}
+.tricks table:hover {
+  background-color: #fc78ff;
+  left: .1em;
+}
+.tricks table.selected {
+  background-color: #fa33ff;
 }

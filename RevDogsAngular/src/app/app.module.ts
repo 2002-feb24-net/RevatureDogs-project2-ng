@@ -11,6 +11,7 @@ import { KennelComponent } from './kennel/kennel.component';
 import { LoginComponent } from './login/login.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { TricksComponent } from './tricks/tricks.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
     KennelComponent,
     LoginComponent,
     CreateUserComponent,
-    LeaderboardComponent
+    LeaderboardComponent,
+    TricksComponent
   ],
   imports: [
     BrowserModule,

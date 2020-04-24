@@ -1,5 +1,6 @@
 import { DogType } from './dog-types';
 import { Users } from './users';
+import { TrickProgress } from './tricks-progress';
 
 export interface Dogs{
     id?: number;
@@ -12,7 +13,5 @@ export interface Dogs{
     adoptionDate?: Date;
     age?: number;
     energy?: number;
-
-    dogType?: DogType;
-    user?: Users;
+    tricksProgress: TrickProgress[];
 }

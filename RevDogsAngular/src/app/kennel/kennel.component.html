@@ -1,6 +1,7 @@
 <div class="grid-container" *ngIf="loggedUser else notloggedin">
 
   <div class="grid-item">
+    <h3><b>Your Dogs</b></h3>
     <div class="dogs">
       <table *ngFor="let dog of loggedUser.dogs"
         [class.selected]="dog === selectedDog"
@@ -23,15 +24,39 @@
       <p>Age (in months): {{selectedDog.age}}</p>
       <p>Adoption Date: {{selectedDog.adoptionDate}}</p>
       <nav *ngIf="selectedDog.isAlive else isdead">
-        <button (click)="feedDog(selectedDog)">Feed</button>
-        <button (click)="playDog(selectedDog)">Play</button>
+        <button (click)="feedDog()">Feed</button>
+        <button (click)="playDog()">Play</button>
       </nav>
       <ng-template #isdead><p>Your dog is dead...</p></ng-template>
+      <br><br>
+      <table>
+        <thead><th>Your Dog's Tricks</th><th></th></thead>
+        <tbody *ngFor="let tp of getLearnedTricks()">
+            <tr>
+              <td><b>{{tp.trick.trickName}}</b>:</td>
+              <td>{{getProgressBar(tp)}}</td>
+              <td><button (click)="practiceTrick(tp)">Practice</button> </td>
+            </tr>
+        </tbody>
+      </table>
     </div>
     <ng-template #nodogselected>
       <p>Please select a dog.</p>
     </ng-template>
   </div>
+
+  <div class="grid-item">
+    <div class="tricks" *ngIf="selectedDog && selectedDog.isAlive">
+      <h4><b>Tricks Available</b></h4>
+      <table *ngFor="let trick of getTricksAvbl()" (click)="teachNewTrick(trick)">
+        <thead><th>Name: {{trick.trickName}}</th></thead>
+        <tbody align="center">
+          <tr><td>Difficulty: {{trick.diffculty}}, Points: {{trick.points}}</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
 
 </div>
 <ng-template #notloggedin>

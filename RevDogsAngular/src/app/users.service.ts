@@ -31,6 +31,14 @@ export class UsersService {
     );
   }
 
+  updateUser(user: Users): Observable<Users>{
+    return this.http.put<Users>(`${this.usersUrl}/${user.id}`, user)
+      .pipe(
+        tap(_ => console.log(`UsersService: Updated User with id ${user.id}`)),
+        catchError(this.handleError<Users>('updateUsers'))
+      );
+  }
+
   userLoggedIn(user: Users){
     this.loggedUser.next(user);
   }

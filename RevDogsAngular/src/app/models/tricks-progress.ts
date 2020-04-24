@@ -6,6 +6,6 @@ export interface TrickProgress{
     petId: number;
     trickId: number;
     progress?: number;
-    dog: Dogs;
-    trick: Trick;
+    dog?: Dogs;
+    trick?: Trick;
 }

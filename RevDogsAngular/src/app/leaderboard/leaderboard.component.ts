@@ -17,7 +17,11 @@ export class LeaderboardComponent implements OnInit {
   }
 
   getUsers(){
-    this.usersService.getUsers().subscribe(users => this.users = users);
+    this.usersService.getUsers().subscribe(users => { this.users = users; this.sortByScore(); });
+  }
+
+  sortByScore(){
+    this.users.sort((user1, user2) => user1.score > user2.score ? -1: user1.score < user2.score ? 1 : 0);
   }
 
 }

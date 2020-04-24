@@ -4,8 +4,8 @@ export interface Trick{
     id?: number;
     trickName: string;
     trickBenefit: number;
-    difficulty: number;
+    diffculty: number;
     points: number;
 
-    tricksProgress: TrickProgress[];
+    tricksProgress?: TrickProgress[];
 }

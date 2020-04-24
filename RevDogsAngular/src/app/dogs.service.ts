@@ -12,11 +12,19 @@ export class DogsService {
 
   constructor(private http: HttpClient) { }
 
-  getDogs(userId: number): Observable<Dogs[]> {
-    return this.http.get<Dogs[]>(`${this.dogsUrl}/FromUser/${userId}`)
+  getDogs(): Observable<Dogs[]>{
+    return this.http.get<Dogs[]>(`${this.dogsUrl}`)
       .pipe(
-        tap(_ => console.log(`DogsService: Fetched dogs from user ${userId}`)),
+        tap(_ => console.log(`DogsService: Fetched Dogs`)),
         catchError(this.handleError<Dogs[]>('getDogs', []))
+      );
+  }
+
+  getDog(id: number): Observable<Dogs>{
+    return this.http.get<Dogs>(`${this.dogsUrl}/${id}`)
+      .pipe(
+        tap(_ => console.log(`DogsService: Fetched Dog with id ${id}`)),
+        catchError(this.handleError<Dogs>('getDog'))
       );
   }
 

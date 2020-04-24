@@ -5,6 +5,7 @@ import { Users } from '../models/users';
 import { UsersService } from '../users.service';
 import { DogsService } from '../dogs.service';
 import { Dogs } from '../models/dogs';
+import { TrickProgress } from '../models/tricks-progress';
 
 @Component({
   selector: 'app-dog-types',
@@ -37,11 +38,13 @@ export class DogTypesComponent implements OnInit {
     if(!this.newDogName)
       this.message = 'You must provide a new name for your dog.';
     else{
+      const trickprogess : TrickProgress[] = new Array();
       const newDog: Dogs = {
         dogTypeId: this.selectedDogType.id,
         userId: this.loggedUser.id,
         petName: this.newDogName,
-        hunger: 80
+        hunger: 80,
+        tricksProgress: trickprogess
       }
       this.dogsService.createDog(newDog).subscribe();
       this.message = `Thanks ${this.loggedUser.firstName} ${this.loggedUser.lastName} for adopting ${this.newDogName}`;
