@@ -25,7 +25,7 @@ export class DogsService {
       .pipe(
         tap(_ => console.log(`DogsService: Created Dog with id ${dog.id}`)),
         catchError(this.handleError<Dogs>('createDog'))
-      );;
+      );
   }
 
   updateDog(dog: Dogs): Observable<Dogs>{
@@ -33,7 +33,7 @@ export class DogsService {
       .pipe(
         tap(_ => console.log(`DogsService: Updated Dog with id ${dog.id}`)),
         catchError(this.handleError<Dogs>('updateDog'))
-      );;
+      );
   }
 
   /**

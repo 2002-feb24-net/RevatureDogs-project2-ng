@@ -18,7 +18,7 @@
 
   <div class="grid-item">
     <div *ngIf="selectedDog else nodogselected">
-      <h3><em><b>{{selectedDog.petName}}</b></em></h3>
+      <h3><em><strong>{{selectedDog.petName}}</strong></em></h3>
       <p>Breed: {{getBreed(selectedDog)}}</p>
       <p>Age (in months): {{selectedDog.age}}</p>
       <p>Adoption Date: {{selectedDog.adoptionDate}}</p>
@@ -33,7 +33,7 @@
     </ng-template>
   </div>
 
-</div>  
+</div>
 <ng-template #notloggedin>
   <p>You must be logged in to access the kennel.</p>
 </ng-template>

@@ -52,7 +52,7 @@ export class UsersService {
       .pipe(
         tap(_ => console.log('UsersService: Created User')),
         catchError(this.handleError<Users>('createUser'))
-      );;
+      );
   }
 
   /**

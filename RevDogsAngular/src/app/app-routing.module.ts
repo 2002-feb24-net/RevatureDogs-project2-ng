@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { DogTypesComponent } from './dog-types/dog-types.component';
 import { KennelComponent } from './kennel/kennel.component';
