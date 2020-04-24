@@ -13,18 +13,18 @@ import { digest } from '@angular/compiler/src/i18n/digest';
   styleUrls: ['./kennel.component.css']
 })
 export class KennelComponent implements OnInit {
+  user: Users;
   loggedUser: Users;
-  dogs: Dogs[];
   selectedDog: Dogs;
   breeds: DogType[];
 
-  constructor(private usersService: UsersService, private dogsService: DogsService, private dogTypesService: DogTypesService) { }
+  constructor(private usersService: UsersService, private dogTypesService: DogTypesService, private dogsService: DogsService) { }
 
   ngOnInit(): void {
-    this.usersService.sharedUser.subscribe(user => this.loggedUser = user);
-    if(this.loggedUser)
-      this.dogsService.getDogs(this.loggedUser.id).subscribe(dogs => this.dogs = dogs);
+    this.usersService.sharedUser.subscribe(user => this.user = user);
     this.dogTypesService.getDogTypes().subscribe(dogTypes => this.breeds = dogTypes);
+    if(this.user)
+      this.usersService.getUser(this.user.id).subscribe(user => this.loggedUser = user);
   }
   
   onSelect(dog: Dogs): void {
@@ -69,10 +69,18 @@ export class KennelComponent implements OnInit {
     return "Breed not found";
   }
 
+  getLifeExpectancy(dog: Dogs): number{
+    for(var i = 0; i < this.breeds.length; i++){
+      if(this.breeds[i].id == dog.dogTypeId){
+        return this.breeds[i].lifeExpectancy * 12;
+      }
+    }
+  }
+
   nextDay(){
-    for(var i = 0; i < this.dogs.length; i++){
-      var dog = this.dogs[i];
-      if(dog.hunger <= 30 || dog.mood <= 30){
+    for(var i = 0; i < this.loggedUser.dogs.length; i++){
+      var dog = this.loggedUser.dogs[i];
+      if(dog.hunger <= 30 || dog.mood <= 30 || dog.age > this.getLifeExpectancy(dog)){
         dog.hunger = 0;
         dog.mood = 0;
         dog.energy = 0;
@@ -82,6 +90,7 @@ export class KennelComponent implements OnInit {
         dog.hunger -= 30;
         dog.mood -= 30;
         dog.energy = 4;
+        dog.age++;
       }
       this.updateDog(dog);
     }

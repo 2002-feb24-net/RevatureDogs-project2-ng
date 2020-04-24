@@ -23,6 +23,14 @@ export class UsersService {
     );
   }
 
+  getUser(id: number): Observable<Users>{
+    return this.http.get<Users>(`${this.usersUrl}/${id}`)
+    .pipe(
+      tap(_ => console.log('UsersService: Fetched user')),
+      catchError(this.handleError<Users>('getUser'))
+    );
+  }
+
   userLoggedIn(user: Users){
     this.loggedUser.next(user);
   }
