@@ -23,19 +23,20 @@
       <p>Breed: {{getBreed(selectedDog)}}</p>
       <p>Age (in months): {{selectedDog.age}}</p>
       <p>Adoption Date: {{selectedDog.adoptionDate}}</p>
+      <img src={{getImageSrc()}} width="300" height="200">
       <nav *ngIf="selectedDog.isAlive else isdead">
         <button (click)="feedDog()">Feed</button>
         <button (click)="playDog()">Play</button>
       </nav>
       <ng-template #isdead><p>Your dog is dead...</p></ng-template>
       <br><br>
-      <table>
+      <table *ngIf="selectedDog.isAlive">
         <thead><th>Your Dog's Tricks</th><th></th></thead>
         <tbody *ngFor="let tp of getLearnedTricks()">
             <tr>
               <td><b>{{tp.trick.trickName}}</b>:</td>
               <td>{{getProgressBar(tp)}}</td>
-              <td><button (click)="practiceTrick(tp)">Practice</button> </td>
+              <td><div *ngIf="!trickLearned(tp)"><button (click)="practiceTrick(tp)">Practice</button></div></td>
             </tr>
         </tbody>
       </table>

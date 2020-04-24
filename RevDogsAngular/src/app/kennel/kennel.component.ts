@@ -134,10 +134,7 @@ export class KennelComponent implements OnInit {
 
   getTricksAvbl(): Trick[]{
     var tricksAvailable: Trick[] = new Array();
-    console.log(`There are ${this.allDogs.length} total dogs.`);
     var trainingDog = this.allDogs.find(dog => dog.id == this.selectedDog.id);
-    console.log(`We found ${trainingDog.petName} and they know ${trainingDog.tricksProgress.length} tricks.`);
-
     for(var i = 0; i < this.tricks.length; i++){
       if(!trainingDog.tricksProgress.find(tp => tp.trickId == this.tricks[i].id))
         tricksAvailable.push(this.tricks[i]);
@@ -188,5 +185,48 @@ export class KennelComponent implements OnInit {
   trickLearned(tp: TrickProgress){
     var trick = this.tricks.find(trick => trick.id == tp.trickId);
     return tp.progress == trick.diffculty;
+  }
+
+  getImageSrc(): string{
+    var breed = this.breeds.find(dp => dp.id == this.selectedDog.dogTypeId).breed;
+    if(breed == "Golden Retriever"){
+      return "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12121353/GoldenRetriever1_stacked.jpg";
+    } 
+    else if(breed == "Pomeranian"){
+      return "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12225627/Pomeranian-On-White-01.jpg";
+    }
+    else if(breed == "Dalmatian"){
+      return "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12234026/Dalmatian-On-White-01.jpg";
+    }
+    else if(breed == "Bulldog"){
+      return "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/11234019/Bulldog-standing-in-the-grass.jpg";
+    }
+    else if(breed == "Husky"){
+      return "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12224230/Siberian-Husky-On-White-01.jpg";
+    }
+    else if(breed == "German Shepherd"){
+      return "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12213218/German-Shepherd-on-White-00.jpg"; 
+    }
+    else if(breed == "Boxer"){
+      return "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/17154200/Boxer.1.jpg";
+    }
+    else if(breed == "Yorkshire Terrier"){
+      return "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/20203728/Yorkshire-Terrier-2.1-e1571338075736.jpg";
+    }
+    else if(breed == "Beagle"){
+      return "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/13000937/Beagle-On-White-07.jpg";
+    }
+    else if(breed == "Pug"){
+      return "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12225358/Pug-On-White-01.jpg"; 
+    }
+    else if(breed == "Shiba Inu"){
+      return "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12224412/Shiba-Inu-On-White-01.jpg";
+    }
+    else if(breed == "Dachshund"){
+      return "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12234114/Dachshund-On-White-01.jpg";
+    }
+    else{
+      return "https://upload.wikimedia.org/wikipedia/commons/5/5f/Kolm%C3%A5rden_Wolf.jpg";
+    }
   }
 }
